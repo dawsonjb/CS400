@@ -8,4 +8,25 @@ Pieceof said "Let's play tricks on Dip's way home from school to get him to obey
 "Maybe he would find others help and make us fall in trouble" Another person said.
 "Do not be afraid of it, he has been seen as a stupid in this school so that no one would help him" Pieceof argued that.
 Dip felt angry to hear this and decided to play it by ear...
-
+End (Isaac Colbert):
+Dip felt angry to hear this and decided to play it by ear on his walk home from school.
+As he expected, Pieceof walked straight over to Dip the moment he saw him.
+"Hey Dip, I bet I can guess the number your thinking of between 1 and 100. I'll get 10 guesses and you tell me if it's higher or lower."
+Dip smiled to himself. "Sure! That sounds fun!"
+Pieceof smirked. "My first guess is one."
+"How did you know?!" Dip exclaimed.
+Pieceof laughed "See guys," he said to his friends. "He's totally stupid! He picked the most obvious number!"
+Dip pretended to feel hurt as the classmates all pointed at him and laughed.
+"Give me another chance!" Dip yelled. "This time I'll guess."
+"Fine." Pieceof said. "But if you don't get it in 7 guesses, you have to do whatever I say forever."
+"Okay, but if I get it, you all have to give me your lunch money for the rest of our time at school," Dip proposed.
+"Sure."
+"50!"
+"Higher!"
+"75!"
+"Lower!"
+Dip continued to use a Binary Search algorithm, guessing Piecof's number of 59 on his 5th guess.
+Pieceof and his friends, stood there with their mouths hanging open, shocked.
+"I thought you said he was stupid!" one of the classmates complained.
+"H-He...He is!" Piecof stammered.
+Dip walked away triumphantly and lived happily ever after, never having to pay for another lunch for the rest of his schooling career.
