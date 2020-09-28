@@ -8,24 +8,50 @@
 import java.time.LocalDate;
 
 public class TestEmployeeDatabase {
-	private static LocalDate recordDate = LocalDate.of(2001, 01, 30);
-	private static LocalDate hireDate = LocalDate.of(2000, 01, 30);
-	private static LocalDate dob = LocalDate.of(1980, 01, 30);
+	private static LocalDate recordDate = LocalDate.of(2001, 1, 30);
+	private static LocalDate hireDate = LocalDate.of(2000, 1, 30);
+	private static LocalDate dob = LocalDate.of(1980, 1, 30);
 	
 	public static void main (String args []) {
-		testHasEmployee();
-		testHasEmployeeFalse();
-		testAddEmployee();
-		testGetEmployee();
-		testRemoveEmployee();
-		testUpdateName();
-		testUpdateDOB();
-		testUpdateHireDate();
-		testUpdateRecordDate();
-		testUpdateTitle();
-		testUpdateGender();
-		testUpdateStatus();
-		testUpdateBusinessUnit();
+		if(testHasEmployee()){
+			System.out.println("testHasEmployee: success");
+		}
+		if(testHasEmployeeFalse()){
+			System.out.println("testHasEmployeeFalse: success");
+		}
+		if(testAddEmployee()){
+			System.out.println("testAddEmployee: success");
+		}
+		if(testGetEmployee()){
+			System.out.println("testGetEmployee: success");
+		}
+		if(testRemoveEmployee()){
+			System.out.println("testRemoveEmployee: success");
+		}
+		if(testUpdateName()){
+			System.out.println("testUpdateName: success");
+		}
+		if(testUpdateDOB()){
+			System.out.println("testUpdateDOB: success");
+		}
+		if(testUpdateHireDate()){
+			System.out.println("testUpdateHireDate: success");
+		}
+		if(testUpdateRecordDate()){
+			System.out.println("testUpdateRecordDate: success");
+		}
+		if(testUpdateTitle()){
+			System.out.println("testUpdateTitle: success");
+		}
+		if(testUpdateGender()){
+			System.out.println("testUpdateGender: success");
+		}
+		if(testUpdateStatus()){
+			System.out.println("testUpdateStatus: success");
+		}
+		if(testUpdateBusinessUnit()){
+			System.out.println("testUpdateBusinessUnit: success");
+		}
 	}
 	 /**
 	   * This method tests if an Employee exists in the Employee Database.
@@ -127,7 +153,7 @@ public class TestEmployeeDatabase {
 		EmployeeDatabase test = new EmployeeDatabase();
 		test.addEmployee(10, "Bob", dob, recordDate, hireDate, "intern", "male", "active", "Business");
 		test.updateDateOfBirth(10, LocalDate.of(1981, 01, 01));
-		if(!test.getEmployee(10).getBirth().equals(LocalDate.of(1981, 01, 01))) {
+		if(!test.getEmployee(10).getDateOfBirth().equals(LocalDate.of(1981, 01, 01))) {
 			System.out.println("updateBirth() failed.");
 			return false;
 		}
@@ -143,7 +169,7 @@ public class TestEmployeeDatabase {
 		EmployeeDatabase test = new EmployeeDatabase();
 		test.addEmployee(10, "Bob", dob, recordDate, hireDate, "intern", "male", "active", "Business");
 		test.updateHireDate(10, LocalDate.of(1981, 01, 01));
-		if(!test.getEmployee(10).getHire().equals(LocalDate.of(1981, 01, 01))) {
+		if(!test.getEmployee(10).getHireDate().equals(LocalDate.of(1981, 01, 01))) {
 			System.out.println("updateHireDate() failed.");
 			return false;
 		}
@@ -159,7 +185,7 @@ public class TestEmployeeDatabase {
 		EmployeeDatabase test = new EmployeeDatabase();
 		test.addEmployee(10, "Bob", dob, recordDate, hireDate, "intern", "male", "active", "Business");
 		test.updateRecordDate(10, LocalDate.of(1981, 01, 01));
-		if(!test.getEmployee(10).getRecord().equals(LocalDate.of(1981, 01, 01))) {
+		if(!test.getEmployee(10).getRecordDate().equals(LocalDate.of(1981, 01, 01))) {
 			System.out.println("updateRecordDate() failed.");
 			return false;
 		}
@@ -175,7 +201,7 @@ public class TestEmployeeDatabase {
 		EmployeeDatabase test = new EmployeeDatabase();
 		test.addEmployee(10, "Bob", dob, recordDate, hireDate, "intern", "male", "active", "Business");
 		test.updateTitle(10, "boss");
-		if(!test.getEmployee(10).getTitle().equals("boss")) {
+		if(!test.getEmployee(10).getJobTitle().equals("boss")) {
 			System.out.println("updateTitle() failed.");
 			return false;
 		}
@@ -223,7 +249,7 @@ public class TestEmployeeDatabase {
 		EmployeeDatabase test = new EmployeeDatabase();
 		test.addEmployee(10, "Bob", dob, recordDate, hireDate, "intern", "male", "active", "Business");
 		test.updateBusinessUnit(10, "Finance");
-		if(!test.getEmployee(10).getUnit().equals("Finance")) {
+		if(!test.getEmployee(10).getBusinessUnit().equals("Finance")) {
 			System.out.println("updateUnit() failed.");
 			return false;
 		}

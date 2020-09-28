@@ -7,35 +7,30 @@
 // Notes to Grader: <optional extra notes>
 public class TestLogInDatabase {
 
-  public static void main (String args []) {
-	  testEncryption();
-	  testLogIn();
-	  testLogInFail();
-	  testAddUser();
-	  testIsUserExist();
-	  testIsUserExistFalse();
-	  testIsAdmin();
-	  testIsAdminFalse();
-		
-	}
- /** This method tests encryption(). A <String> char [].valueOf is tested
-   * to see if the encryption() equals the same password.
-   * <p>
-   * @return true when the test passes, false and sends message when fails.
-   */
-  public static boolean testEncryption() {
-	  LogInDatabase test = new LogInDatabase();
-	  char [] fakePassword = new char [4];
-	  fakePassword[0]= 't';
-	  fakePassword[1]= 'e';
-	  fakePassword[2]= 's';
-	  fakePassword[3]= 't';
-	  if (!test.encryption("test").equals(String.valueOf(fakePassword))){
-		  System.out.println("encryption() failed.");
-		  return false;
+  public static void main (String[] args) {
+	  if(testLogIn()){
+		  System.out.println("testLogIn: success");
 	  }
-	  return true;
-  }
+	  if(testLogInFail()){
+		  System.out.println("testLogInFail: success");
+	  }
+	  if(testAddUser()){
+		  System.out.println("testAddUser: success");
+	  }
+	  if(testIsUserExist()){
+		  System.out.println("testIsUserExist: success");
+	  }
+	  if(testIsUserExistFalse()){
+		  System.out.println("testIsUserExistFalse: success");
+	  }
+	  if(testIsAdmin()){
+		  System.out.println("testIsAdmin: success");
+	  }
+	  if(testIsAdminFalse()){
+		  System.out.println("testIsAdminFalse: success");
+	  }
+	}
+
  /** This method tests logIn(). A user is added is added, and the 
    * logIn() is used to check if the user can log in. The method should
    * return true.
@@ -43,7 +38,7 @@ public class TestLogInDatabase {
    * @return true when the test passes, false and sends message when fails.
    */
   public static boolean testLogIn() {
-	  LogInDatabase test = new LogInDatabase();
+	  LogInAndRegister test = new LogInAndRegister();
 	  test.addUser("username", "password", true);
 	  if (!test.logIn("username", "password")) {
 		  System.out.println("logIn() failed.");
@@ -58,7 +53,7 @@ public class TestLogInDatabase {
    * @return true when the test passes, false and sends message when fails.
    */
   public static boolean testLogInFail() {
-	  LogInDatabase test = new LogInDatabase();
+	  LogInAndRegister test = new LogInAndRegister();
 	  if (test.logIn("username", "password")) {
 		  System.out.println("logIn() should have failed but didn't.");
 		  return false;
@@ -71,7 +66,7 @@ public class TestLogInDatabase {
    * @return true when the test passes, false and sends message when fails.
    */
   public static boolean testAddUser() {
-	  LogInDatabase test = new LogInDatabase();
+	  LogInAndRegister test = new LogInAndRegister();
 	  if (!test.addUser("username", "password", true)) {
 		  System.out.println("addUser() failed.");
 		  return false;
@@ -85,7 +80,7 @@ public class TestLogInDatabase {
    * @return true when the test passes, false and sends message when fails.
    */
   public static boolean testIsUserExist() {
-	  LogInDatabase test = new LogInDatabase();
+	  LogInAndRegister test = new LogInAndRegister();
 	  test.addUser("username", "password", true);
 	  if(!test.isUserExist("username")) {
 		  System.out.println("isUserExist() failed.");
@@ -100,7 +95,7 @@ public class TestLogInDatabase {
    * @return true when the test passes, false and sends message when fails.
    */
   public static boolean testIsUserExistFalse() {
-	  LogInDatabase test = new LogInDatabase();
+	  LogInAndRegister test = new LogInAndRegister();
 	  if(test.isUserExist("username")) {
 		  System.out.println("isUserExist() should have failed.");
 		  return false;
@@ -114,7 +109,7 @@ public class TestLogInDatabase {
    * @return true when the test passes, false and sends message when fails.
    */
   public static boolean testIsAdmin() {
-	  LogInDatabase test = new LogInDatabase();
+	  LogInAndRegister test = new LogInAndRegister();
 	  test.addUser("username", "password", true);
 	  if(!test.isUserExist("username")) {
 		  System.out.println("isUserExist() failed.");
@@ -130,10 +125,10 @@ public class TestLogInDatabase {
    */
 
   public static boolean testIsAdminFalse() {
-	  LogInDatabase test = new LogInDatabase();
+	  LogInAndRegister test = new LogInAndRegister();
 	  test.addUser("username", "password", false);
-	  if(test.isUserExist("username")) {
-		  System.out.println("isUserExist() should have failed but didn't.");
+	  if(test.isAdmin("username")) {
+		  System.out.println("isAdmin() should have failed but didn't.");
 		  return false;
 	  }
 	  return true;
