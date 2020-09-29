@@ -1,4 +1,6 @@
- // --== CS400 File Header Information ==--
+import java.util.NoSuchElementException;
+
+// --== CS400 File Header Information ==--
 // Name: Dawson Bauer
 // Email: djbauer2@wisc.edu
 // Team: CG
@@ -39,12 +41,16 @@ public class TestLogInDatabase {
    */
   public static boolean testLogIn() {
 	  LogInAndRegister test = new LogInAndRegister();
+	  test.clear();
 	  test.addUser("username", "password", true);
-	  if (!test.logIn("username", "password")) {
+	  try {
+		  test.logIn("username", "password");
+		  test.clear();
+		  return true;
+	  } catch (NoSuchElementException e) {
 		  System.out.println("logIn() failed.");
 		  return false;
 	  }
-	  return true;
   }
  /** This method tests logIn(). The logIn() is used to check if the 
    * user can log in and there is no user in the database. The method should
@@ -54,10 +60,12 @@ public class TestLogInDatabase {
    */
   public static boolean testLogInFail() {
 	  LogInAndRegister test = new LogInAndRegister();
+	  test.clear();
 	  if (test.logIn("username", "password")) {
 		  System.out.println("logIn() should have failed but didn't.");
 		  return false;
 	  }
+	  test.clear();
 	  return true;
   }
  /** This method tests if a user can be added to the database. The addUser
@@ -67,10 +75,12 @@ public class TestLogInDatabase {
    */
   public static boolean testAddUser() {
 	  LogInAndRegister test = new LogInAndRegister();
+	  test.clear();
 	  if (!test.addUser("username", "password", true)) {
 		  System.out.println("addUser() failed.");
 		  return false;
 	  }
+	  test.clear();
 	  return true;
   }
  /** This method tests the isUserExist method. A user is added to the 
@@ -81,11 +91,13 @@ public class TestLogInDatabase {
    */
   public static boolean testIsUserExist() {
 	  LogInAndRegister test = new LogInAndRegister();
+	  test.clear();
 	  test.addUser("username", "password", true);
 	  if(!test.isUserExist("username")) {
 		  System.out.println("isUserExist() failed.");
 		  return false;
 	  }
+	  test.clear();
 	  return true;
   }
  /** This method tests the isUserExist method. No user is added to the 
@@ -96,10 +108,12 @@ public class TestLogInDatabase {
    */
   public static boolean testIsUserExistFalse() {
 	  LogInAndRegister test = new LogInAndRegister();
+	  test.clear();
 	  if(test.isUserExist("username")) {
 		  System.out.println("isUserExist() should have failed.");
 		  return false;
 	  }
+	  test.clear();
 	  return true;
   }
  /** This method tests the isAdmin method. A user is added to the 
@@ -110,11 +124,13 @@ public class TestLogInDatabase {
    */
   public static boolean testIsAdmin() {
 	  LogInAndRegister test = new LogInAndRegister();
+	  test.clear();
 	  test.addUser("username", "password", true);
 	  if(!test.isUserExist("username")) {
 		  System.out.println("isUserExist() failed.");
 		  return false;
 	  }
+	  test.clear();
 	  return true;
   }
  /** This method tests the isAdmin method. A user is added to the 
@@ -126,11 +142,13 @@ public class TestLogInDatabase {
 
   public static boolean testIsAdminFalse() {
 	  LogInAndRegister test = new LogInAndRegister();
+	  test.clear();
 	  test.addUser("username", "password", false);
 	  if(test.isAdmin("username")) {
 		  System.out.println("isAdmin() should have failed but didn't.");
 		  return false;
 	  }
+	  test.clear();
 	  return true;
   }
 }
