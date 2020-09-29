@@ -41,6 +41,7 @@ public class TestLogInAndRegister {
      */
     public static boolean testAddUser() {
         LogInAndRegister test = new LogInAndRegister();
+        test.clear();
         if (!test.addUser("username", "password", true)) {
             System.out.println("addUser() failed. User was not added.");
             return false;
@@ -60,6 +61,7 @@ public class TestLogInAndRegister {
      */
     public static boolean testAddUserWithCapacity() {
         LogInAndRegister test = new LogInAndRegister();
+        test.clear();
         if (!test.addUser("username", "password", true)) {
             System.out.println("addUser() failed. User was not added.");
             return false;
@@ -78,6 +80,7 @@ public class TestLogInAndRegister {
      */
     public static boolean testUserExists() {
         LogInAndRegister test = new LogInAndRegister();
+        test.clear();
         test.addUser("username", "password", true);
         if (!test.isUserExist("username")) {
             System.out.println("userExists() failed. User was not found.");
@@ -98,6 +101,7 @@ public class TestLogInAndRegister {
      */
     public static boolean testUserExistsFalse() {
         LogInAndRegister test = new LogInAndRegister();
+        test.clear();
         if (test.isUserExist("username")) {
             System.out.println("userExists() didn't fail but should have.");
             return false;
@@ -117,6 +121,7 @@ public class TestLogInAndRegister {
      */
     public static boolean testLogIn() {
         LogInAndRegister test = new LogInAndRegister();
+        test.clear();
         test.addUser("username", "password", true);
         try {
             test.logIn("username", "password");
@@ -139,6 +144,7 @@ public class TestLogInAndRegister {
      */
     public static boolean testLogInFalse() {
         LogInAndRegister test = new LogInAndRegister();
+        test.clear();
         try {
             if(!test.logIn("username", "password")){
                 test.clear();
