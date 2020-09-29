@@ -45,6 +45,7 @@ public class TestLogInAndRegister {
             System.out.println("addUser() failed. User was not added.");
             return false;
         } else {
+            test.clear();
             return true;
         }
     }
@@ -63,6 +64,7 @@ public class TestLogInAndRegister {
             System.out.println("addUser() failed. User was not added.");
             return false;
         } else {
+            test.clear();
             return true;
         }
     }
@@ -81,6 +83,7 @@ public class TestLogInAndRegister {
             System.out.println("userExists() failed. User was not found.");
             return false;
         } else {
+            test.clear();
             return true;
         }
     }
@@ -99,6 +102,7 @@ public class TestLogInAndRegister {
             System.out.println("userExists() didn't fail but should have.");
             return false;
         } else {
+            test.clear();
             return true;
         }
     }
@@ -116,9 +120,11 @@ public class TestLogInAndRegister {
         test.addUser("username", "password", true);
         try {
             test.logIn("username", "password");
+            test.clear();
             return true;
         } catch (NoSuchElementException e) {
             System.out.println("logIn() failed.");
+            test.clear();
             return false;
         }
     }
@@ -135,11 +141,13 @@ public class TestLogInAndRegister {
         LogInAndRegister test = new LogInAndRegister();
         try {
             if(!test.logIn("username", "password")){
+                test.clear();
             	return true;
 			}
             System.out.println("logIn() should have fail but didn't.");
             return false;
         } catch (NoSuchElementException e) {
+            test.clear();
             return true;
         }
     }
