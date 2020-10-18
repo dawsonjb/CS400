@@ -229,4 +229,8 @@ public class Main {
     public static String getGenreFrequencyInPercent(String genre) {
         return String.valueOf((int) (songCollection.getGenreFrequency(genre) * 1000) / 10.0 + "%");
     }
+    
+    public static void clear(){
+        songCollection.clearDatabase();
+    }
 }
