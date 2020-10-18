@@ -6,12 +6,6 @@
 // Lecturer: Florian Heimerl
 // Notes to Grader: none
 
-/**
- * @program: SongDatabase
- * @description: This is the main interface of the program
- * @author: Dawson Bauer
- **/
-
 import java.util.Scanner;
 
 public class Main {
@@ -52,7 +46,7 @@ public class Main {
                 String bpm = scanner.nextLine();
                 System.out.println("Song Duration: ");
                 String duration = scanner.nextLine();
-                if (addSong(title, artist, genre, Integer.parseInt(year), Integer.parseInt(bpm), Integer.parseInt(duration))) {
+                if (addSong(title, artist, genre, year, bpm, duration)) {
                     System.out.println("Added successfully!");
                 } else {
                     System.out.println("Added Failed!");
@@ -173,10 +167,9 @@ public class Main {
         System.out.println("6: Exit the song Database");
     }
 
-    public static boolean addSong(String title, String artist, String genre, int year, int bpm, int duration) {
+    public static boolean addSong(String title, String artist, String genre, String year, String bpm, String duration) {
         try {
-            songCollection.addSong(title, artist, genre, year, bpm, duration);
-            return true;
+            return songCollection.addSong(title, artist, genre, Integer.parseInt(year), Integer.parseInt(bpm), Integer.parseInt(duration));
         } catch (Exception e) {
             return false;
         }
@@ -229,7 +222,7 @@ public class Main {
     public static String getGenreFrequencyInPercent(String genre) {
         return String.valueOf((int) (songCollection.getGenreFrequency(genre) * 1000) / 10.0 + "%");
     }
-    
+
     public static void clear(){
         songCollection.clearDatabase();
     }
