@@ -169,7 +169,7 @@ public class Main {
                 System.out.println("Enter the genre you want to search: ");
                 genre = scanner.nextLine();
                 System.out.print("Here is frequency of the genre in the Song Database: ");
-                System.out.println(songCollection.getGenreFrequency(genre));
+                System.out.println(songCollection.getGenreFrequency(genre) + "%");
             }
             System.out.println();
         }
@@ -181,7 +181,7 @@ public class Main {
         System.out.println("2: Check if a song is in the database");
         System.out.println("3: Get a song from the database");
         System.out.println("4: Update a song in the database");
-        System.out.println("5: Check the total number of songs in the database");
+        System.out.println("5: Check the frequency of genre in the database");
         System.out.println("6: Exit the song Database");
     }
 }
