@@ -12,16 +12,16 @@
  * @author: Dawson Bauer
  **/
 
-import java.util.EmptyStackException;
 import java.util.Scanner;
 
 public class Main {
-    private static Scanner scanner = new Scanner(System.in);
-    private static String input = "";
+
+    private static SongDatabase songCollection = new SongDatabase();
 
     public static void main(String[] args) {
-        SongDatabase songCollection = new SongDatabase();//new songDatabase
+        Scanner scanner = new Scanner(System.in);
         while (true) {
+            String input = "";
             do {
                 goHome();
                 System.out.println("Select an option (1-6): ");
@@ -33,11 +33,11 @@ public class Main {
                     && !input.equalsIgnoreCase("5")
                     && !input.equalsIgnoreCase("6"));
 
-            if (input.equalsIgnoreCase("6")) { // if the user enter 5, stop the program
+            if (input.equalsIgnoreCase("6")) {      // if the user enter 5, stop the program
                 break;
             }
 
-            if (input.equals("1")) { //try to add song to database
+            if (input.equals("1")) {    //try to add song to database
                 System.out.println("-----------------------------------------------------------------");
                 System.out.println("Add a song to the Song Database with the following info:");
                 System.out.println("Song title: ");
@@ -52,27 +52,26 @@ public class Main {
                 String bpm = scanner.nextLine();
                 System.out.println("Song Duration: ");
                 String duration = scanner.nextLine();
-                try {
-                    songCollection.addSong(title, artist, genre, Integer.parseInt(year), Integer.parseInt(bpm), Integer.parseInt(duration));
+                if (addSong(title, artist, genre, Integer.parseInt(year), Integer.parseInt(bpm), Integer.parseInt(duration))) {
                     System.out.println("Added successfully!");
-                } catch (Exception e){
-                    System.out.println("Add fails");
+                } else {
+                    System.out.println("Added Failed!");
                 }
-            } else if (input.equals("2")) {// check if song is in the database
+            } else if (input.equals("2")) {     // check if song is in the database
                 System.out.println("Enter the song title: ");
                 String title = scanner.nextLine();
-                if (songCollection.hasSong(title)) {
+                if (contains(title)) {
                     System.out.println("The song is in the database!");
                 } else {
                     System.out.println("No Match Found!");
                 }
-            } else if (input.equals("3")) {// try to get song's info from database
+            } else if (input.equals("3")) {     // try to get song's info from database
                 System.out.println("Enter the song title: ");
                 String title = scanner.nextLine();
-                if (!songCollection.hasSong(title)) {
+                Song song = getSong(title);
+                if (song == null) {
                     System.out.println("Sorry this song is not in the Song Database :(");
                 } else {
-                    Song song = songCollection.getSong(title);
                     System.out.println("Here is the song you were looking for:");
                     System.out.print("Song title: ");
                     System.out.println(song.getSongTitle());
@@ -87,7 +86,7 @@ public class Main {
                     System.out.print("Song Duration: ");
                     System.out.println(song.getDuration());
                 }
-            } else if (input.equals("4")) { // updata a song's info in the database
+            } else if (input.equals("4")) {     // updata a song's info in the database
                 System.out.println("-----------------------------------------------------------------");
                 System.out.println("To update a song in the Song Database, enter " + "/n"
                         + "the song's title:");
@@ -104,7 +103,7 @@ public class Main {
                     System.out.println("4: Song BPM");
                     System.out.println("5: Song Duration");
                     input = scanner.nextLine();
-                }while (!input.equalsIgnoreCase("1")
+                } while (!input.equalsIgnoreCase("1")
                         && !input.equalsIgnoreCase("2")
                         && !input.equalsIgnoreCase("3")
                         && !input.equalsIgnoreCase("4")
@@ -112,64 +111,53 @@ public class Main {
                 if (input.equals("1")) {
                     System.out.println("Enter new artist:");
                     String artist = scanner.nextLine();
-                    if(songCollection.updateArtist(title, artist)){
+                    if (updateArtist(title, artist)) {
                         System.out.println("update successfully!");
-                    }else{
+                    } else {
                         System.out.println("update failed!");
                     }
                 } else if (input.equals("2")) {
                     System.out.println("Enter new genre:");
                     String genre = scanner.nextLine();
-                    if(songCollection.updateGenre(title, genre) ){
+                    if (updateGenre(title, genre)) {
                         System.out.println("update successfully!");
-                    }else{
+                    } else {
                         System.out.println("update failed!");
                     }
 
                 } else if (input.equals("3")) {
                     System.out.println("Enter new year:");
-                    try {
-                        String year = scanner.nextLine();
-                        if (songCollection.updateYear(title, Integer.parseInt(year))) {
-                            System.out.println("update successfully!");
-                        } else {
-                            System.out.println("update failed!");
-                        }
-                    }catch (Exception e){
+                    String year = scanner.nextLine();
+                    if (updateYear(title, year)) {
+                        System.out.println("update successfully!");
+                    } else {
                         System.out.println("update failed!");
                     }
+
                 } else if (input.equals("4")) {
                     System.out.println("Enter new BPM:");
-                    try {
-                        String bpm = scanner.nextLine();
-                        if (songCollection.updateBpm(title, Integer.parseInt(bpm))) {
-                            System.out.println("update successfully!");
-                        } else {
-                            System.out.println("update failed!");
-                        }
-                    }catch (Exception e){
+                    String bpm = scanner.nextLine();
+                    if (updateBpm(title, bpm)) {
+                        System.out.println("update successfully!");
+                    } else {
                         System.out.println("update failed!");
                     }
                 } else if (input.equals("5")) {
                     System.out.println("Enter new duration:");
-                    try {
-                        String duration = scanner.nextLine();
-                        if (songCollection.updateDuration(title, Integer.parseInt(duration))) {
-                            System.out.println("update successfully!");
-                        } else {
-                            System.out.println("update failed!");
-                        }
-                    }catch (Exception e){
+                    String duration = scanner.nextLine();
+                    if (updateDuration(title, duration)) {
+                        System.out.println("update successfully!");
+                    } else {
                         System.out.println("update failed!");
                     }
                 }
-            } else if (input.equals("5")) {// print frequency of a genre
+            } else if (input.equals("5")) {     // print frequency of a genre
                 System.out.println("-----------------------------------------------------------------");
                 String genre = "";
                 System.out.println("Enter the genre you want to search: ");
                 genre = scanner.nextLine();
                 System.out.print("Here is frequency of the genre in the Song Database: ");
-                System.out.println((int)(songCollection.getGenreFrequency(genre) * 1000)/10.0 + "%");
+                System.out.println(getGenreFrequencyInPercent(genre));
             }
             System.out.println();
         }
@@ -183,5 +171,62 @@ public class Main {
         System.out.println("4: Update a song in the database");
         System.out.println("5: Check the frequency of genre in the database");
         System.out.println("6: Exit the song Database");
+    }
+
+    public static boolean addSong(String title, String artist, String genre, int year, int bpm, int duration) {
+        try {
+            songCollection.addSong(title, artist, genre, year, bpm, duration);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public static boolean contains(String title) {
+        return songCollection.hasSong(title);
+    }
+
+    public static Song getSong(String title) {
+        try {
+            return songCollection.getSong(title);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static boolean updateArtist(String title, String artist) {
+        return songCollection.updateArtist(title, artist);
+    }
+
+    public static boolean updateGenre(String title, String genre) {
+        return songCollection.updateGenre(title, genre);
+    }
+
+    public static boolean updateBpm(String title, String bpm) {
+        try {
+            return songCollection.updateBpm(title, Integer.parseInt(bpm));
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public static boolean updateYear(String title, String year) {
+        try {
+            return songCollection.updateYear(title, Integer.parseInt(year));
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public static boolean updateDuration(String title, String duration) {
+        try {
+            return songCollection.updateDuration(title, Integer.parseInt(duration));
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public static String getGenreFrequencyInPercent(String genre) {
+        return String.valueOf((int) (songCollection.getGenreFrequency(genre) * 1000) / 10.0 + "%");
     }
 }
