@@ -169,7 +169,7 @@ public class Main {
                 System.out.println("Enter the genre you want to search: ");
                 genre = scanner.nextLine();
                 System.out.print("Here is frequency of the genre in the Song Database: ");
-                System.out.println(songCollection.getGenreFrequency(genre) + "%");
+                System.out.println((int)(songCollection.getGenreFrequency(genre) * 1000)/10.0 + "%");
             }
             System.out.println();
         }
