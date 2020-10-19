@@ -159,6 +159,7 @@ public class Main {
 
     public static void goHome() {
         System.out.println("---- Welcome to the database System ----");
+        System.out.println("---- Currently, there are " + songCollection.getNumOfSong() + " songs in the database ----");
         System.out.println("1: Add a song to the database");
         System.out.println("2: Check if a song is in the database");
         System.out.println("3: Get a song from the database");
