@@ -167,7 +167,14 @@ public class Main {
         System.out.println("5: Check the frequency of genre in the database");
         System.out.println("6: Exit the song Database");
     }
-
+    /**
+    * This method tries using the addSong method and
+     * catches an exception is thrown. This could be 
+    * if the song is already in the data base or if invalid info was 
+    * added to the the adding method.
+    * @return: boolean return false if exception was caught
+    * and true if song was added
+    **/
     public static boolean addSong(String title, String artist, String genre, String year, String bpm, String duration) {
         try {
             return songCollection.addSong(title, artist, genre, Integer.parseInt(year), Integer.parseInt(bpm), Integer.parseInt(duration));
