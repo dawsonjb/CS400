@@ -34,18 +34,66 @@ public class Main {
             if (input.equals("1")) {    //try to add song to database
                 System.out.println("-----------------------------------------------------------------");
                 System.out.println("Add a song to the Song Database with the following info:");
-                System.out.println("Song title: ");
-                String title = scanner.nextLine();
-                System.out.println("Artist: ");
-                String artist = scanner.nextLine();
-                System.out.println("Song Genre: ");
-                String genre = scanner.nextLine();
-                System.out.println("Song Year: ");
-                String year = scanner.nextLine();
-                System.out.println("Song Bpm: ");
-                String bpm = scanner.nextLine();
-                System.out.println("Song Duration: ");
-                String duration = scanner.nextLine();
+                String title = "";
+                do {
+                    System.out.println("Song title: ");
+                    title = scanner.nextLine();
+                } while (title == null || title.equals(""));
+
+                String artist = "";
+                do {
+                    System.out.println("Artist: ");
+                    artist = scanner.nextLine();
+                } while (artist == null || artist.equals(""));
+
+                String genre = "";
+                do {
+                    System.out.println("Song Genre: ");
+                    genre = scanner.nextLine();
+                } while (genre == null || genre.equals(""));
+
+                String year = "";
+                while (true) {
+                    try {
+                        System.out.println("Song Year: ");
+                        year = scanner.nextLine();
+                        int test = Integer.parseInt(year);
+                        if (test <= 0) {
+                            throw new Exception();
+                        }
+                        break;
+                    } catch (Exception ignored) {
+                    }
+                }
+
+                String bpm = "";
+                while (true) {
+                    try {
+                        System.out.println("Song Bpm: ");
+                        bpm = scanner.nextLine();
+                        int test = Integer.parseInt(bpm);
+                        if (test <= 0) {
+                            throw new Exception();
+                        }
+                        break;
+                    } catch (Exception ignored) {
+                    }
+                }
+
+                String duration = "";
+                while (true) {
+                    try {
+                        System.out.println("Song Duration: ");
+                        duration = scanner.nextLine();
+                        int test = Integer.parseInt(duration);
+                        if (test <= 0) {
+                            throw new Exception();
+                        }
+                        break;
+                    } catch (Exception ignored) {
+                    }
+                }
+
                 if (addSong(title, artist, genre, year, bpm, duration)) {
                     System.out.println("Added successfully!");
                 } else {
@@ -167,14 +215,16 @@ public class Main {
         System.out.println("5: Check the frequency of genre in the database");
         System.out.println("6: Exit the song Database");
     }
+
     /**
-    * This method tries using the addSong method and
-     * catches an exception is thrown. This could be 
-    * if the song is already in the data base or if invalid info was 
-    * added to the the adding method.
-    * @return: boolean return false if exception was caught
-    * and true if song was added
-    **/
+     * This method tries using the addSong method and
+     * catches an exception is thrown. This could be
+     * if the song is already in the data base or if invalid info was
+     * added to the the adding method.
+     *
+     * @return: boolean return false if exception was caught
+     * and true if song was added
+     **/
     public static boolean addSong(String title, String artist, String genre, String year, String bpm, String duration) {
         try {
             return songCollection.addSong(title, artist, genre, Integer.parseInt(year), Integer.parseInt(bpm), Integer.parseInt(duration));
@@ -231,7 +281,7 @@ public class Main {
         return String.valueOf((int) (songCollection.getGenreFrequency(genre) * 1000) / 10.0 + "%");
     }
 
-    public static void clear(){
+    public static void clear() {
         songCollection.clearDatabase();
     }
 }
