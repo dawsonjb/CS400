@@ -28,6 +28,7 @@ public class Main {
                     && !input.equalsIgnoreCase("6"));
 
             if (input.equalsIgnoreCase("6")) {      // if the user enter 5, stop the program
+                scanner.close();
                 break;
             }
 
