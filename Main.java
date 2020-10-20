@@ -130,8 +130,7 @@ public class Main {
                 }
             } else if (input.equals("4")) {     // updata a song's info in the database
                 System.out.println("-----------------------------------------------------------------");
-                System.out.println("To update a song in the Song Database, enter " + "/n"
-                        + "the song's title:");
+                System.out.println("To update a song in the Song Database, \nenter the song's title:");
                 String title = scanner.nextLine();
                 if (!songCollection.hasSong(title)) {
                     System.out.println("Sorry this song is not in the Song Database :(");
