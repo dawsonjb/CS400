@@ -4,8 +4,7 @@
 // Team: CG
 // Role: Backend Developer
 // TA: Yeping Wang
-// Lecturer: Gary Dahl
-// Notes to Grader: None
+// Lecturer: Florian
 import java.util.List;
 
 public interface RelationshipDatabaseInterface {
